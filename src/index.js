@@ -17,7 +17,7 @@ async function exciter() {
         console.error(err);
     }
 }
-
+//0 33 13,15,17,19,21 * * *
 cron.schedule('0 33 13,15,17,19,21 * * *', async () => {
     await exciter();
     if (urlApp[0]) {
@@ -25,8 +25,9 @@ cron.schedule('0 33 13,15,17,19,21 * * *', async () => {
             try {
                 await axios.get(url).then((e) => {
                     console.log(`${url} ------- excited`);
-                }).catch((err) => {
+                }).catch(async (err) => {
                     console.log(`error whem excited ${url}`)
+                    await Api.deleteOne({url});
                 })
             } catch (err) {
                 console.error(err)
