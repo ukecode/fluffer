@@ -9,7 +9,7 @@ router.post('/register', async (req, res) => {
         return res.send({ api });
 
     } catch (err) {
-        return res.status(400).send({
+        return res.status(401).send({
             error: 'Register Fail'
         });
     }
@@ -42,8 +42,21 @@ router.post('/list', async (req, res) => {
             error
         })
     }
-
 });
+
+
+
+router.get('/list', async (req, res) => {
+    try {
+        const apps = await Api.find(function (err, obj) { console.log(obj); });
+        res.send(apps);
+    } catch (error) {
+        res.status(404).send({
+            error
+        })
+    }
+});
+
 
 
 router.get('', (req, res) => {
