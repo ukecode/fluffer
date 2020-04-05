@@ -10,6 +10,11 @@
   <div class="card">
       <img src="./assets/Fluffler (1).png" class="icon">
       </img>
+      <h4>Apps Excited</h4>
+      <div class="scrollmenu" onload="loadApps()">
+        <a></a>
+      </div>
+
       <form class="formName">
         <input type="button" value="name" id="nameb" >
         <input type="text" name="name" id="name" placeholder="Your App Name">
@@ -19,6 +24,12 @@
      <input type="url" name="url" id="url" placeholder="Your App Url" >
       <input type="button" onclick="sendData()" value="send" id="test">
  </form>
+ <div class="load-wrapp">
+  <div class="load-10">
+    <h4>Wainting</h4>
+      <div class="bar"></div>
+  </div>
+</div>
   </div>  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script>
   <script src="./script.js"></script>
