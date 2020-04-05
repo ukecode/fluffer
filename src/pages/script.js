@@ -37,8 +37,63 @@ function checkUrl(url, name) {
     }
 }
 
-function sendData() {
+async function sendData() {
     let url = document.getElementById('url').value;
     let name = document.getElementById('name').value;
+    const check  = await checkGet();
+    if(check){
     checkUrl(url, name);
+    }else{
+        Swal.fire({
+            background: "rgba(195, 246, 255, 0.9)",
+            position: 'center',
+            icon: 'error',
+            color: 'white',
+            title: "We were unable to receive a return for your application's GET route.",
+            showConfirmButton: true,
+            timer: 2500
+        })
+    }
 }
+
+//------- tentativa de checagem antes de cadastro -------
+
+async function checkGet() {
+    const url = document.getElementById('url').value;
+    var load = document.getElementsByClassName('load-wrapp')
+    load[0].style.display = 'block'
+    console.log(url)
+    let  res = ''; 
+    try {
+      res  = await axios.get(url).then((e) => {
+            load[0].style.display = 'none';
+            return true
+        }).catch((err) => {
+            load[0].style.display = 'none';
+            return false
+        });
+    } catch (err) {
+        console.log('eita')
+    }
+    return res;
+}
+
+async function loadApps(){
+    const apps  =  await axios.get('http://localhost:3000/apps/list').then((e)=>{
+        return e.data
+    }).catch((err)=>{
+        console.log(err);
+    })
+    let menu  = document.getElementsByClassName('scrollmenu')
+
+    apps.map((e)=>{
+    var novo  = document.createElement('a')
+    novo.appendChild(document.createTextNode(e.name)); 
+    menu[0].appendChild(novo)
+    });
+
+}
+loadApps()
+
+
+

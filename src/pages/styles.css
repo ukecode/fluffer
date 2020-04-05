@@ -19,7 +19,7 @@
  .card{
     background-color: rgba(40, 74, 129, 0.7);
      width: 680px;
-     height: 500px;
+     height: 600px;
      margin-left: 25%;
      margin-top: 30px;
      border-radius: 7px;
@@ -30,7 +30,7 @@
  }
 
  .icon{
-     height:70%;
+     height:50%;
      width: 60%;
      border-radius: 7px;
      
@@ -77,3 +77,63 @@ color: white
  height: 30px;
  justify-content: start;
 }
+.load-wrapp {
+    display: none;
+    float: left;
+    width: 80px;
+    height: 6px;
+    margin: 10px 7px 7px 0;
+    padding: 4px 4px 4px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: rgba(40, 74, 129, 0.1);
+}
+h4 {
+    color: white;
+}
+
+.load-10 .bar {animation: loadingJ 2s cubic-bezier(.17,.37,.43,.67) infinite;}
+.l-10 {animation-delay: 1.56s;}
+.load-10{
+    text-align: center;
+}
+
+.bar {
+    float: left;
+    width: 15px;
+    height: 8px;
+    border-radius: 2px;
+    background-color: #1130bb;
+}
+
+
+@keyframes loadingJ {
+  0%,100% {transform: translate(0,0);}
+  
+  50% {
+      transform: translate(70px,0px);
+      background-color: #f5634a;
+      width: 25px;
+  }
+}
+
+div.scrollmenu {
+    width: 400px;
+    margin-top: 5px;
+    background-color: rgba(40, 74, 129, 0.9);
+    overflow: auto;
+    white-space: nowrap;
+    border-radius: 7px;
+  }
+  
+  div.scrollmenu a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+  }
+  
+  div.scrollmenu a:hover {
+    background-color: #777;
+  }
