@@ -1,18 +1,17 @@
-const dotenv = require('dotenv');
-const axios = require('axios'); 
- 
-const result = dotenv.config({ debug: process.env.DEBUG}); 
+const axios = require('axios');
 
-if (result.error){
+const result = require('dotenv').config({ path: __dirname + '/../.env' });
+
+if (result.error) {
     throw result.error
 }
 
-const baseURL  = result.parsed.BASE_URL; 
+const baseURL = result.parsed.BASE_URL;
 
-const instance  = axios.create({
-baseURL, 
-timeout: 4000
-}); 
+const instance = axios.create({
+    baseURL,
+    timeout: 4000
+});
 
-module.exports = instance; 
- 
+module.exports = instance;
+

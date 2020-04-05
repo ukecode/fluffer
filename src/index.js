@@ -1,17 +1,47 @@
 const cron = require('node-cron');
-const instance = require('./server/api');
+const axios = require('axios');
+const express = require('express');
+const cors = require('cors');
+const Api = require('./models/apisDatabase');
 
-//-----  Teste Básico de requisição dentro do Cron ------
-//  dispara uma requisição por minuto 
+let urlApp = [];
 
-cron.schedule('* * * * *', () => {
-
-    instance.get('/Kaiofprates').then(function (res) {
-        console.log(res.data.bio);
-    })
-
-
+async function exciter() {
+    urlApp = [];
+    try {
+        const apps = await Api.find(function (err, obj) { return obj.url });
+        if (apps) {
+            apps.map((e) => urlApp.push(e.url))
+        }
+    } catch (error) {
+        console.error(err);
+    }
+}
+//0 33 13,15,17,19,21 * * *
+cron.schedule('0 33 13,15,17,19,21 * * *', async () => {
+    await exciter();
+    if (urlApp[0]) {
+        urlApp.map(async (url) => {
+            try {
+                await axios.get(url).then((e) => {
+                    console.log(`${url} ------- excited`);
+                }).catch(async (err) => {
+                    console.log(`error whem excited ${url}`)
+                    await Api.deleteOne({url});
+                })
+            } catch (err) {
+                console.error(err)
+            }
+        })
+    }
 });
 
 
+const app = express();
 
+app.use(cors());
+app.use(express.json());
+app.use('/main', express.static(__dirname + '/pages'));
+require('./controllers/apiControllers')(app)
+
+app.listen(process.env.PORT || 3000);

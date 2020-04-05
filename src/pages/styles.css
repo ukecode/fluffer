@@ -1,0 +1,139 @@
+* {
+    padding:0;
+    margin:0;
+    vertical-align:baseline;
+    list-style:none;
+    border:0
+    }
+
+
+ body {
+     background-image: url('./assets/rocket-1103713_1920.jpg');
+     flex-direction: row;
+     justify-content: center;
+     justify-items: center;
+     text-align: center;
+     align-items: center;
+ }   
+
+ .card{
+    background-color: rgba(40, 74, 129, 0.7);
+     width: 680px;
+     height: 600px;
+     margin-left: 25%;
+     margin-top: 30px;
+     border-radius: 7px;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+ }
+
+ .icon{
+     height:50%;
+     width: 60%;
+     border-radius: 7px;
+     
+ }
+
+ #test , #url , #get {
+     height: 30px;
+     margin: 0px;
+ }
+ form{
+    width:60%;
+    background-color: rgba(40, 74, 129, 0.1);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    margin-top: 8px;
+
+}
+#url, #name{
+    width: 350px;
+    padding-left: 20px;
+
+
+}
+#get, #nameb{
+width: 50px;
+border-radius: 5px 0px 0px 5px;
+background-color: indigo;
+color: white;
+}
+#test{
+width: 75px;
+border-radius: 0px 5px 5px 0px;
+background-color: tomato;
+color: white
+}
+#name{
+    border-radius: 0px 5px 5px 0px;
+    width: 380px;
+}
+
+.formName{
+ height: 30px;
+ justify-content: start;
+}
+.load-wrapp {
+    display: none;
+    float: left;
+    width: 80px;
+    height: 6px;
+    margin: 10px 7px 7px 0;
+    padding: 4px 4px 4px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: rgba(40, 74, 129, 0.1);
+}
+h4 {
+    color: white;
+}
+
+.load-10 .bar {animation: loadingJ 2s cubic-bezier(.17,.37,.43,.67) infinite;}
+.l-10 {animation-delay: 1.56s;}
+.load-10{
+    text-align: center;
+}
+
+.bar {
+    float: left;
+    width: 15px;
+    height: 8px;
+    border-radius: 2px;
+    background-color: #1130bb;
+}
+
+
+@keyframes loadingJ {
+  0%,100% {transform: translate(0,0);}
+  
+  50% {
+      transform: translate(70px,0px);
+      background-color: #f5634a;
+      width: 25px;
+  }
+}
+
+div.scrollmenu {
+    width: 400px;
+    margin-top: 5px;
+    background-color: rgba(40, 74, 129, 0.9);
+    overflow: auto;
+    white-space: nowrap;
+    border-radius: 7px;
+  }
+  
+  div.scrollmenu a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+  }
+  
+  div.scrollmenu a:hover {
+    background-color: #777;
+  }
