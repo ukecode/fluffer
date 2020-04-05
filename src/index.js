@@ -1,22 +1,39 @@
 const cron = require('node-cron');
-const instance = require('./server/api');
+const axios = require('axios');
 const express = require('express');
 const cors = require('cors');
-const path = require('path')
+const Api = require('./models/apisDatabase');
 
-//-----  Teste Básico de requisição dentro do Cron ------
-//  dispara uma requisição por minuto 
+let urlApp = [];
 
-// const datas  = ['* * * * * ','5,10,15 * * * * *']
+async function exciter() {
+    urlApp = [];
+    try {
+        const apps = await Api.find(function (err, obj) { return obj.url });
+        if (apps) {
+            apps.map((e) => urlApp.push(e.url))
+        }
+    } catch (error) {
+        console.error(err);
+    }
+}
 
-// datas.map((e)=>{
-//     cron.schedule(e, () => {
-//         instance.get('/Kaiofprates').then(function (res) {
-//             console.log(res.data.name);
-//             console.log(`Cron expression -----------> ${e}`)
-//         })
-//     });
-// });
+cron.schedule('0 33 13,15,17,19,21 * * *', async () => {
+    await exciter();
+    if (urlApp[0]) {
+        urlApp.map(async (url) => {
+            try {
+                await axios.get(url).then((e) => {
+                    console.log(`${url} ------- excited`);
+                }).catch((err) => {
+                    console.log(`error whem excited ${url}`)
+                })
+            } catch (err) {
+                console.error(err)
+            }
+        })
+    }
+});
 
 
 const app = express();
