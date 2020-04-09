@@ -6,7 +6,7 @@ if (result.error) {
     throw result.error
 }
 
-const baseURL = result.parsed.BASE_URL;
+const baseURL = result.parsed.BASE_URL || process.env.BASE_URL;
 
 const instance = axios.create({
     baseURL,
