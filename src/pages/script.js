@@ -2,7 +2,7 @@
 function checkUrl(url, name) {
     const firstCheck = url.match(/herokuapp.com/)
     if (firstCheck) {
-        axios.post('http://localhost:3000/apps/register', {
+        axios.post('https://fluffer.herokuapp.com/apps/register', {
             url,
             name
         }).then((e) => {
@@ -40,10 +40,10 @@ function checkUrl(url, name) {
 async function sendData() {
     let url = document.getElementById('url').value;
     let name = document.getElementById('name').value;
-    const check  = await checkGet();
-    if(check){
-    checkUrl(url, name);
-    }else{
+    const check = await checkGet();
+    if (check) {
+        checkUrl(url, name);
+    } else {
         Swal.fire({
             background: "rgba(195, 246, 255, 0.9)",
             position: 'center',
@@ -63,9 +63,9 @@ async function checkGet() {
     var load = document.getElementsByClassName('load-wrapp')
     load[0].style.display = 'block'
     console.log(url)
-    let  res = ''; 
+    let res = '';
     try {
-      res  = await axios.get(url).then((e) => {
+        res = await axios.get(url).then((e) => {
             load[0].style.display = 'none';
             return true
         }).catch((err) => {
@@ -78,18 +78,18 @@ async function checkGet() {
     return res;
 }
 
-async function loadApps(){
-    const apps  =  await axios.get('http://localhost:3000/apps/list').then((e)=>{
+async function loadApps() {
+    const apps = await axios.get('https://fluffer.herokuapp.com/apps/list').then((e) => {
         return e.data
-    }).catch((err)=>{
+    }).catch((err) => {
         console.log(err);
     })
-    let menu  = document.getElementsByClassName('scrollmenu')
+    let menu = document.getElementsByClassName('scrollmenu')
 
-    apps.map((e)=>{
-    var novo  = document.createElement('a')
-    novo.appendChild(document.createTextNode(e.name)); 
-    menu[0].appendChild(novo)
+    apps.map((e) => {
+        var novo = document.createElement('a')
+        novo.appendChild(document.createTextNode(e.name));
+        menu[0].appendChild(novo)
     });
 
 }
