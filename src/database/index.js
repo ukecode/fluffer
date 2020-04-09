@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const result = require('dotenv').config({ path: __dirname + '/../.env' });
 
-const dataBaseUrl = process.env.DB_ATLAS;
+const dataBaseUrl = "mongodb+srv://ukecode:carbon14@cluster0-ippbo.mongodb.net/fluffer?retryWrites=true&w=majority"
 
 mongoose.connect(dataBaseUrl, {
     useNewUrlParser: true,
